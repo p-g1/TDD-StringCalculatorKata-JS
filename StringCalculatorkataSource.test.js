@@ -13,4 +13,5 @@ test("should return correct number when given a single value string", () => {
 test("should return correct number when given two value string", () => {
   expect(Source.StringCalculator("1,2")).toBe(3);
   expect(Source.StringCalculator("3,2")).toBe(5);
+  expect(Source.StringCalculator("99,2")).toBe(101);
 });

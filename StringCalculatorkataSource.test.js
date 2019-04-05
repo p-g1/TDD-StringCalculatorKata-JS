@@ -40,8 +40,8 @@ test("should return correct number when given multiple newline characters in str
 });
 
 test("should return six when given string including custom delimiter", () => {
-  expect(Source.StringCalculator("//[',']\n1,2,3")).toBe(6);
-  expect(Source.StringCalculator("//[';']\n1;2;3")).toBe(6);
+  expect(Source.StringCalculator("//[,]\n1,2,3")).toBe(6);
+  expect(Source.StringCalculator("//[;]\n1;2;3")).toBe(6);
 });
 
 test("should throw an exception that shows value when given single negative in string", () => {
@@ -72,13 +72,13 @@ test("should ignore any numbers bigger than 1000", () => {
 });
 
 test("should allow custom delimiter of '***'", () => {
-  expect(Source.StringCalculator("998***1")).toBe(999);
+  expect(Source.StringCalculator("//[***]\n998***1")).toBe(999);
 });
 
 test("should allow custom delimiter of 'bbbbb'", () => {
-  expect(Source.StringCalculator("998bbbbb1")).toBe(999);
+  expect(Source.StringCalculator("//[bbbbb]\n998bbbbb1")).toBe(999);
 });
 
 test("should allow custom delimiter of 'bb***bb'", () => {
-  expect(Source.StringCalculator("997bb***bb1bb***bb1")).toBe(999);
+  expect(Source.StringCalculator("//[bb***bb]\n997bb***bb1bb***bb1")).toBe(999);
 });

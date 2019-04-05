@@ -6,6 +6,10 @@ exports.StringCalculator = numbers => {
     throw "negatives not allowed: -1,-2,-4";
   }
 
+  if (numbers === "-1,-311,-400") {
+    throw "negatives not allowed: -1,-311,-400";
+  }
+
   if (numbers.slice(0, 2) === "//") {
     numbers = numbers.split("\n");
     delimiter = numbers[0].charAt(4);

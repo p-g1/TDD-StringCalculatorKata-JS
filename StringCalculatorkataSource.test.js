@@ -49,4 +49,7 @@ test("should throw an exception that shows all negative values when given multip
   expect(() => {
     Source.StringCalculator("-1,-2,3,-4");
   }).toThrow("negatives not allowed: -1,-2,-4");
+  expect(() => {
+    Source.StringCalculator("-1,-311,-400");
+  }).toThrow("negatives not allowed: -1,-311,-400");
 });

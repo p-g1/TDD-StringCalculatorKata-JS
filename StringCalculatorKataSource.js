@@ -1,30 +1,31 @@
-exports.StringCalculator = x => {
-  if (x == "") {
+exports.StringCalculator = numbers => {
+  if (numbers == "") {
     return 0;
   }
 
-  if (x.split(",").length === 2) {
-    let first = x.split(",")[0];
-    let last = x.split(",")[1];
+  if (numbers.split(",").length === 2) {
+    let first = numbers.split(",")[0];
+    let last = numbers.split(",")[1];
 
     return Number(first) + Number(last);
   }
 
-  if (x.split(",").length == 3) {
-    let first = x.split(",")[0];
-    let second = x.split(",")[1];
-    let last = x.split(",")[2];
+  if (numbers.split(",").length == 3) {
+    let first = numbers.split(",")[0];
+    let second = numbers.split(",")[1];
+    let last = numbers.split(",")[2];
 
     return Number(first) + Number(second) + Number(last);
   }
 
-  if (x == "1,2,3,4") {
-    return 10;
+  if (numbers.split(",").length == 4) {
+    let first = numbers.split(",")[0];
+    let second = numbers.split(",")[1];
+    let third = numbers.split(",")[2];
+    let last = numbers.split(",")[3];
+
+    return Number(first) + Number(second) + Number(third) + Number(last);
   }
 
-  if (x == "3,4,5,6") {
-    return 18;
-  }
-
-  return Number(x);
+  return Number(numbers);
 };

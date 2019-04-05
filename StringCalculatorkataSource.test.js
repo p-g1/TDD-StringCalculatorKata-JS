@@ -9,3 +9,7 @@ test("should return correct number when given a single value string", () => {
   expect(Source.StringCalculator("2")).toBe(2);
   expect(Source.StringCalculator("99")).toBe(99);
 });
+
+test("should return correct number when given two value string", () => {
+  expect(Source.StringCalculator("1,2")).toBe(3);
+});

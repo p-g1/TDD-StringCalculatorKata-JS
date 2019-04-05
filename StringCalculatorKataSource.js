@@ -10,5 +10,13 @@ exports.StringCalculator = x => {
     return Number(first) + Number(last);
   }
 
+  if (x.split(",").length == 3) {
+    let first = x.split(",")[0];
+    let second = x.split(",")[1];
+    let last = x.split(",")[2];
+
+    return Number(first) + Number(second) + Number(last);
+  }
+
   return Number(x);
 };

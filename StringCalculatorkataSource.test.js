@@ -35,3 +35,9 @@ test("should return six when given string including custom delimiter", () => {
   expect(Source.StringCalculator("//[',']\n1,2,3")).toBe(6);
   expect(Source.StringCalculator("//[';']\n1;2;3")).toBe(6);
 });
+
+test("should throw an exception when give '1,-2,3'", () => {
+  expect(() => {
+    Source.StringCalculator("1,-2,3");
+  }).toThrow("negatives not allowed");
+});

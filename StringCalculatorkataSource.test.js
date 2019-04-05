@@ -72,7 +72,15 @@ test("should ignore any numbers bigger than 1000", () => {
 });
 
 test("should allow custom delimiters of any length", () => {
-  expect(Source.StringCalculator("//[***]\n998***1")).toBe(999);
+  expect(Source.StringCalculator("//[xxx]\n998xxx1")).toBe(999);
   expect(Source.StringCalculator("//[bbbbb]\n998bbbbb1")).toBe(999);
-  expect(Source.StringCalculator("//[bb***bb]\n997bb***bb1bb***bb1")).toBe(999);
+  expect(Source.StringCalculator("//[bb!!!bb]\n997bb!!!bb1bb!!!bb1")).toBe(999);
 });
+
+test("should allow multiple custom delimiters", () => {
+  expect(Source.StringCalculator("//[z][q]\n10z11z12q13")).toBe(46);
+  expect(Source.StringCalculator("//[k][m][s]\n1m2k3s4")).toBe(10);
+  expect(Source.StringCalculator("//[k][m][n][d]\n20d20n20m10k10")).toBe(80);
+});
+
+test("should allow multiple custom delimiters of any length", () => {});

@@ -8,8 +8,7 @@ exports.StringCalculator = numbers => {
     numbers = numbers[1];
   }
 
-  numbers = numbers.replace("/\n", delimiter);
-  numbers = numbers.split(delimiter);
+  numbers = numbers.replace("/\n", delimiter).split(delimiter);
 
   numbers.forEach(number => {
     total += Number(number);

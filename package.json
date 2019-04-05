@@ -1,0 +1,15 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "StringCalculatorKataSource.js",
+  "scripts": {
+    "jest": "jest",
+    "jest:coverage": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.6.0"
+  }
+}

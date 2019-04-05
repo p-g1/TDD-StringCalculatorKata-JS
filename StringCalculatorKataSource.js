@@ -14,7 +14,7 @@ exports.StringCalculator = numbers => {
     number = Number(number);
 
     if (number < 0) {
-      throw "negatives not allowed";
+      throw "negatives not allowed: " + number.toString();
     }
     total += number;
   });

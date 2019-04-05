@@ -39,11 +39,11 @@ test("should return six when given string including custom delimiter", () => {
 test("should throw an exception when given '1,-2,3'", () => {
   expect(() => {
     Source.StringCalculator("1,-2,3");
-  }).toThrow("negatives not allowed");
+  }).toThrow("negatives not allowed: -2");
 });
 
 test("should throw an exception when given '-100'", () => {
   expect(() => {
     Source.StringCalculator("-100");
-  }).toThrow("negatives not allowed");
+  }).toThrow("negatives not allowed: -100");
 });

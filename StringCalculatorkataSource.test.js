@@ -27,8 +27,10 @@ test("should return correct number when given four value string", () => {
   expect(Source.StringCalculator("3,4,5,6")).toBe(18);
 });
 
-test("should return ten given '1/\n2,3'", () => {
+test("should return correct number when given single newline character in string", () => {
   expect(Source.StringCalculator("1/\n2,3")).toBe(6);
+  expect(Source.StringCalculator("1,2/\n3")).toBe(6);
+  expect(Source.StringCalculator("1,200,100/\n600")).toBe(901);
 });
 
 test("should return six when given string including custom delimiter", () => {

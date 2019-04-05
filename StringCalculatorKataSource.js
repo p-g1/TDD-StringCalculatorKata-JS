@@ -10,12 +10,9 @@ exports.StringCalculator = numbers => {
       .replace(/\[/g, "")
       .split("]");
 
-    console.log(delimiters);
     numbers = numbers[1];
 
     delimiters.forEach(delimiter => {
-      //   delimiter.replace(/\\*/g, "/\\\\*");
-      console.log(delimiter);
       tempDelimiter = new RegExp(delimiter, "g");
       numbers = numbers.replace(tempDelimiter, standardDelimiter);
     });

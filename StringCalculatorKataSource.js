@@ -3,16 +3,12 @@ exports.StringCalculator = x => {
     return 0;
   }
 
-  if (x == "1,2") {
-    return 3;
+  if (x.split(",").length === 2) {
+    let first = x.split(",")[0];
+    let last = x.split(",")[1];
+
+    return Number(first) + Number(last);
   }
 
-  if (x == "3,2") {
-    return 5;
-  }
-
-  if (x == "99,2") {
-    return 101;
-  }
-  return +x;
+  return Number(x);
 };

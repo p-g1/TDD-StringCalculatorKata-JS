@@ -44,3 +44,9 @@ test("should throw an exception that shows value when given single negative in s
     Source.StringCalculator("-100");
   }).toThrow("negatives not allowed: -100");
 });
+
+test("should throw an exception that shows all negative values when given multiple in string", () => {
+  expect(() => {
+    Source.StringCalculator("-1,-2,3,-4");
+  }).toThrow("negatives not allowed: -1,-2,-4");
+});

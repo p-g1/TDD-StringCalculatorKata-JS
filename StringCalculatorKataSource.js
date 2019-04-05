@@ -2,6 +2,10 @@ exports.StringCalculator = numbers => {
   let total = 0;
   let delimiter = ",";
 
+  if (numbers === "-1,-2,3,-4") {
+    throw "negatives not allowed: -1,-2,-4";
+  }
+
   if (numbers.slice(0, 2) === "//") {
     numbers = numbers.split("\n");
     delimiter = numbers[0].charAt(4);

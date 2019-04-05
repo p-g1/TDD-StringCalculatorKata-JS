@@ -30,3 +30,8 @@ test("should return correct number when given four value string", () => {
 test("should return ten given '1/\n2,3'", () => {
   expect(Source.StringCalculator("1/\n2,3")).toBe(6);
 });
+
+test("should return six when given string including custom delimiter", () => {
+  expect(Source.StringCalculator("//[',']\n1,2,3")).toBe(6);
+  expect(Source.StringCalculator("//[';']\n1;2;3")).toBe(6);
+});

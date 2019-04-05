@@ -70,3 +70,15 @@ test("should ignore any numbers bigger than 1000", () => {
   expect(Source.StringCalculator("1000,2000,2")).toBe(2);
   expect(Source.StringCalculator("900000")).toBe(0);
 });
+
+test("should allow custom delimiter of '***'", () => {
+  expect(Source.StringCalculator("998***1")).toBe(999);
+});
+
+test("should allow custom delimiter of 'bbbbb'", () => {
+  expect(Source.StringCalculator("998bbbbb1")).toBe(999);
+});
+
+test("should allow custom delimiter of 'bb***bb'", () => {
+  expect(Source.StringCalculator("997bb***bb1bb***bb1")).toBe(999);
+});

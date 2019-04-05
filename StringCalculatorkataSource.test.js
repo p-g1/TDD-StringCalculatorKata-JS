@@ -28,9 +28,15 @@ test("should return correct number when given four value string", () => {
 });
 
 test("should return correct number when given single newline character in string", () => {
-  expect(Source.StringCalculator("1/\n2,3")).toBe(6);
-  expect(Source.StringCalculator("1,2/\n3")).toBe(6);
-  expect(Source.StringCalculator("1,200,100/\n600")).toBe(901);
+  expect(Source.StringCalculator("1\n2,3")).toBe(6);
+  expect(Source.StringCalculator("1,2\n3")).toBe(6);
+  expect(Source.StringCalculator("1,200,100\n600")).toBe(901);
+});
+
+test("should return correct number when given multiple newline characters in string", () => {
+  expect(Source.StringCalculator("1\n2\n3")).toBe(6);
+  expect(Source.StringCalculator("12,2\n9\n1")).toBe(24);
+  expect(Source.StringCalculator("99\n200\n100\n600")).toBe(999);
 });
 
 test("should return six when given string including custom delimiter", () => {

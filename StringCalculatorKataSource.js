@@ -8,7 +8,7 @@ exports.StringCalculator = numbers => {
     numbers = numbers[1];
   }
 
-  numbers = numbers.replace("/\n", delimiter).split(delimiter);
+  numbers = numbers.replace(/\n/g, delimiter).split(delimiter);
 
   if (numbers.some(number => Number(number < 0))) {
     let negatives = numbers.filter(number => Number(number) < 0);

@@ -25,3 +25,7 @@ test("should return correct number when given three value string", () => {
 test("should return ten when given '1,2,3,4'", () => {
   expect(Source.StringCalculator("1,2,3,4")).toBe(10);
 });
+
+test("should return eighteen when given '3,4,5,6'", () => {
+  expect(Source.StringCalculator("3,4,5,6")).toBe(18);
+});

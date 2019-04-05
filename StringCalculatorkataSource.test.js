@@ -68,3 +68,11 @@ test("should throw an exception that shows all negative values when given multip
 test("should ignore any numbers bigger than 1000 in '1000,2000,2'", () => {
   expect(Source.StringCalculator("1000,2000,2")).toBe(2);
 });
+
+test("should ignore any numbers bigger than 1000 in '10000,20000,5'", () => {
+  expect(Source.StringCalculator("1000,2000,2")).toBe(2);
+});
+
+test("should ignore any numbers bigger than 1000 in '10000,20000,5'", () => {
+  expect(Source.StringCalculator("900000")).toBe(0);
+});

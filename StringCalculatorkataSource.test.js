@@ -7,4 +7,5 @@ test("should return zero when given empty string", () => {
 test("should return correct number when given a single value string", () => {
   expect(Source.StringCalculator("1")).toBe(1);
   expect(Source.StringCalculator("2")).toBe(2);
+  expect(Source.StringCalculator("99")).toBe(99);
 });

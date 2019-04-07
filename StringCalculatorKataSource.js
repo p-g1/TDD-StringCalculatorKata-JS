@@ -1,7 +1,7 @@
 exports.StringCalculator = numbers => {
   let total = 0;
   let standardDelimiter = ",";
-
+  var delimiters = "";
   if (numbers.slice(0, 2) === "//") {
     numbers = numbers.split("\n");
 
@@ -12,8 +12,10 @@ exports.StringCalculator = numbers => {
 
     numbers = numbers[1];
 
+    // delimiters = new RegExp("\\" + delimiters.join("|\\") + "|,");
+
     delimiters.forEach(delimiter => {
-      tempDelimiter = new RegExp(delimiter, "g");
+      tempDelimiter = new RegExp("[" + delimiter + "]", "g");
       numbers = numbers.replace(tempDelimiter, standardDelimiter);
     });
   }

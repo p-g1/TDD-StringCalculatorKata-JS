@@ -12,8 +12,6 @@ exports.StringCalculator = numbers => {
 
     numbers = numbers[1];
 
-    // delimiters = new RegExp("\\" + delimiters.join("|\\") + "|,");
-
     delimiters.forEach(delimiter => {
       tempDelimiter = new RegExp("[" + delimiter + "]", "g");
       numbers = numbers.replace(tempDelimiter, standardDelimiter);

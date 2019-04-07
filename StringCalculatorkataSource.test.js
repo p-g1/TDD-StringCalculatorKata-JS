@@ -94,4 +94,6 @@ test("should allow multiple custom delimiters of any length", () => {
 test("should allow custom delimiters using special characters", () => {
   expect(Source.StringCalculator("//[*][q]\n10*11*12q13")).toBe(46);
   expect(Source.StringCalculator("//[***][q]\n10***11***12q13")).toBe(46);
+  expect(Source.StringCalculator("//[-][+][?+]\n10?+11-12+13")).toBe(46);
+  expect(Source.StringCalculator("//[{}][---][?]\n10{}11---12?13")).toBe(46);
 });

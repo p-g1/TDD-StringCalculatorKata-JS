@@ -2,15 +2,14 @@ exports.StringCalculator = numbers => {
   let total = 0;
   let standardDelimiter = ",";
   var delimiters = "";
-  if (numbers.slice(0, 2) === "//") {
-    numbers = numbers.split("\n");
 
-    delimiters = numbers[0]
-      .slice(numbers[0].indexOf("[") + 1, numbers[0].lastIndexOf("]"))
+  if (numbers.slice(0, 2) === "//") {
+    delimiters = numbers
+      .slice(numbers.indexOf("[") + 1, numbers.lastIndexOf("]"))
       .replace(/\[/g, "")
       .split("]");
 
-    numbers = numbers[1];
+    numbers = numbers.slice(numbers.lastIndexOf("]") + 1);
 
     delimiters.forEach(delimiter => {
       tempDelimiter = new RegExp("[" + delimiter + "]", "g");

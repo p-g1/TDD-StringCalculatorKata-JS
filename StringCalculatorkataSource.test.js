@@ -42,6 +42,7 @@ test("should return correct number when given multiple newline characters in str
 test("should return six when given string including custom delimiter", () => {
   expect(Source.StringCalculator("//[,]\n1,2,3")).toBe(6);
   expect(Source.StringCalculator("//[;]\n1;2;3")).toBe(6);
+  expect(Source.StringCalculator("//[\n]\n1\n2\n3")).toBe(6);
 });
 
 test("should throw an exception that shows value when given single negative in string", () => {

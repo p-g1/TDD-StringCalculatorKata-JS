@@ -17,17 +17,19 @@ exports.StringCalculator = numbers => {
     });
   }
 
-  numbers = numbers.replace(/\n/g, standardDelimiter).split(standardDelimiter);
+  numbers = numbers
+    .replace(/\n/g, standardDelimiter)
+    .split(standardDelimiter)
+    .map(number => Number(number));
 
-  if (numbers.some(number => Number(number < 0))) {
-    let negatives = numbers.filter(number => Number(number) < 0);
+  if (numbers.some(number => number < 0)) {
+    let negatives = numbers.filter(number => number < 0);
     throw "negatives not allowed: " + negatives;
   }
 
   numbers.forEach(number => {
-    number = Number(number);
     if (number < 1000) {
-      total += Number(number);
+      total += number;
     }
   });
 

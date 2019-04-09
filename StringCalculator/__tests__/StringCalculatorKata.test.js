@@ -1,13 +1,19 @@
 const Source = require("../StringCalculatorKata.js");
+const each = require("jest-each");
 
 test("should return zero when given empty string", () => {
   expect(Source.StringCalculator("")).toBe(0);
 });
 
-test("should return correct number when given a single value string", () => {
-  expect(Source.StringCalculator("1")).toBe(1);
-  expect(Source.StringCalculator("2")).toBe(2);
-  expect(Source.StringCalculator("99")).toBe(99);
+describe("should return correct number when given a single value string", () => {
+  test.each`
+    input   | expectedResult
+    ${"1"}  | ${1}
+    ${"2"}  | ${2}
+    ${"99"} | ${99}
+  `("$input converts to $expectedResult", ({ input, expectedResult }) => {
+    expect(Source.StringCalculator(input)).toBe(expectedResult);
+  });
 });
 
 test("should return correct number when given two value string", () => {

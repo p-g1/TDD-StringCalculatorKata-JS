@@ -1,7 +1,6 @@
-var total = 0;
-
 exports.StringCalculator = numbers => {
   var standardDelimiter = ",";
+  var total = 0;
 
   if (numbers.slice(0, 2) === "//") {
     numbers = extractDelimiters(numbers, standardDelimiter);
@@ -13,7 +12,7 @@ exports.StringCalculator = numbers => {
     filterNegatives(numbers);
   }
 
-  sum(numbers);
+  total = sum(numbers);
 
   return total;
 };
@@ -50,10 +49,11 @@ const parseValues = (numbers, standardDelimiter) => {
 }
 
 const sum = numbers => {
-  total = 0;
+  let total = 0;
   numbers.forEach(number => {
     if (number < 1000) {
       total += number;
     }
   });
+  return total;
 }

@@ -1,5 +1,5 @@
 const Source = require("../StringCalculatorKata.js");
-const each = require("jest-each");
+require("jest-each");
 
 test("should return zero when given empty string", () => {
   expect(Source.StringCalculator("")).toBe(0);
@@ -82,16 +82,13 @@ describe("should return six when given string including custom delimiter", () =>
   });
 });
 
-test("should throw an exception that shows value when given single negative in string", () => {
+test("should throw an exception that shows any negative values when given negative(s) in string", () => {
   expect(() => {
     Source.StringCalculator("1,-2,3");
   }).toThrow("negatives not allowed: -2");
   expect(() => {
     Source.StringCalculator("-100");
   }).toThrow("negatives not allowed: -100");
-});
-
-test("should throw an exception that shows all negative values when given multiple in string", () => {
   expect(() => {
     Source.StringCalculator("-1,-2,3,-4");
   }).toThrow("negatives not allowed: -1,-2,-4");
@@ -109,7 +106,7 @@ describe("should ignore any numbers bigger than 1000", () => {
     ${"1000,2000,2"}  | ${2}
     ${"10001,2000,2"} | ${2}
     ${"900000"}       | ${0}
-  `("input converts to $expectedResult", ({ input, expectedResult }) => {
+  `("$input converts to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 });
@@ -136,17 +133,25 @@ describe("should allow multiple custom delimiters", () => {
   });
 });
 
-test("should allow multiple custom delimiters of any length", () => {
-  expect(Source.StringCalculator("//[zzz][q]\n10zzz11zzz12q13")).toBe(46);
-  expect(Source.StringCalculator("//[kkkk][m][sysy]\n1m2kkkk3sysy4")).toBe(10);
-  expect(
-    Source.StringCalculator("//[k][mm][nnn][dddd]\n20dddd20nnn20mm10k10")
-  ).toBe(80);
+describe("should allow multiple custom delimiters of any length", () => {
+  test.each`
+    input                                           | expectedResult
+    ${"//[zzz][q]\n10zzz11zzz12q13"}                | ${46}
+    ${"//[kkkk][m][sysy]\n1m2kkkk3sysy4"}           | ${10}
+    ${"//[k][mm][nnn][dddd]\n20dddd20nnn20mm10k10"} | ${80}
+  `("input converts to $expectedResult", ({ input, expectedResult }) => {
+    expect(Source.StringCalculator(input)).toBe(expectedResult);
+  });
 });
 
-test("should allow custom delimiters using special characters", () => {
-  expect(Source.StringCalculator("//[*][q]\n10*11*12q13")).toBe(46);
-  expect(Source.StringCalculator("//[***][q]\n10***11***12q13")).toBe(46);
-  expect(Source.StringCalculator("//[-][+][?+]\n10?+11-12+13")).toBe(46);
-  expect(Source.StringCalculator("//[{}][---][?]\n10{}11---12?13")).toBe(46);
+describe("should allow custom delimiters using special characters", () => {
+  test.each`
+    input                               | expectedResult
+    ${"//[*][q]\n10*11*12q13"}          | ${46}
+    ${"//[***][q]\n10***11***12q13"}    | ${46}
+    ${"//[-][+][?+]\n10?+11-12+13"}     | ${46}
+    ${"//[{}][---][?]\n10{}11---12?13"} | ${46}
+  `("input converts to $expectedResult", ({ input, expectedResult }) => {
+    expect(Source.StringCalculator(input)).toBe(expectedResult);
+  });
 });

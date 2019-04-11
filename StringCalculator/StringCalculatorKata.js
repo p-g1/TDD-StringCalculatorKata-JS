@@ -1,59 +1,52 @@
-var total = 0;
+const standardDelimiter = ",";
 
 exports.StringCalculator = numbers => {
-  var standardDelimiter = ",";
-
-  if (numbers.slice(0, 2) === "//") {
-    numbers = extractDelimiters(numbers, standardDelimiter);
-  }
-
-  numbers = parseValues(numbers, standardDelimiter);
-
-  if (numbers.some(number => number < 0)) {
-    filterNegatives(numbers);
-  }
-
-  sum(numbers);
-
-  return total;
+  return numbers
+    .standardiseDelimiters()
+    .parseValues()
+    .ensureNoNegatives()
+    .sum();
 };
 
-
-const extractDelimiters = (numbers, standardDelimiter) => {
+String.prototype.standardiseDelimiters = function() {
+  if (this.slice(0, 2) === "//") {
     var delimiters = "";
-    
-    delimiters = numbers
-    .slice(numbers.indexOf("[") + 1, numbers.lastIndexOf("]"))
-    .replace(/\[/g, "")
-    .split("]");
 
-    numbers = numbers.slice(numbers.lastIndexOf("]") + 1);
-  
+    delimiters = this.slice(this.indexOf("[") + 1, this.lastIndexOf("]"))
+      .replace(/\[/g, "")
+      .split("]");
+
+    var string = this.slice(this.lastIndexOf("]") + 1);
+
     delimiters.forEach(delimiter => {
       tempDelimiter = new RegExp("[" + delimiter + "]", "g");
-      numbers = numbers.replace(tempDelimiter, standardDelimiter);
+      string = string.replace(tempDelimiter, standardDelimiter);
     });
+    return string;
+  }
+  return this;
+};
 
-    return numbers;
-}
-
-const filterNegatives = numbers => {
-  let negatives = numbers.filter(number => number < 0);
-    throw "negatives not allowed: " + negatives;
-} 
-
-const parseValues = (numbers, standardDelimiter) => {
-  return numbers
-    .replace(/\n/g, standardDelimiter)
+String.prototype.parseValues = function() {
+  return this.replace(/\n/g, standardDelimiter)
     .split(standardDelimiter)
     .map(number => Number(number));
-}
+};
 
-const sum = numbers => {
-  total = 0;
-  numbers.forEach(number => {
+Array.prototype.ensureNoNegatives = function() {
+  if (this.some(number => number < 0)) {
+    let negatives = this.filter(number => number < 0);
+    throw "negatives not allowed: " + negatives;
+  }
+  return this;
+};
+
+Array.prototype.sum = function() {
+  var total = 0;
+  this.forEach(number => {
     if (number < 1000) {
       total += number;
     }
   });
-}
+  return total;
+};

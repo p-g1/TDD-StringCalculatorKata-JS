@@ -101,7 +101,7 @@ describe("StringCalculator", () => {
     ${"//[xxx]\n998xxx1"}                 | ${999}
     ${"//[bbbbb]\n998bbbbb1"}             | ${999}
     ${"//[bb!!!bb]\n997bb!!!bb1bb!!!bb1"} | ${999}
-  `("should convert $input to $expectedResult", ({ input, expectedResult }) => {
+  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 

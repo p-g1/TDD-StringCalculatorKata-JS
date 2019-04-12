@@ -97,18 +97,21 @@ describe("StringCalculator", () => {
   });
 
   test.each`
-    input                                 | expectedResult
-    ${"//[xxx]\n998xxx1"}                 | ${999}
-    ${"//[bbbbb]\n998bbbbb1"}             | ${999}
-    ${"//[bb!!!bb]\n997bb!!!bb1bb!!!bb1"} | ${999}
-  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
-    expect(Source.StringCalculator(input)).toBe(expectedResult);
-  });
+    input                                 | pretty                                 | expectedResult
+    ${"//[xxx]\n998xxx1"}                 | ${"//[xxx]\\n998xxx1"}                 | ${999}
+    ${"//[bbbbb]\n998bbbbb1"}             | ${"//[bbbbb]\\n998bbbbb1"}             | ${999}
+    ${"//[bb!!!bb]\n997bb!!!bb1bb!!!bb1"} | ${"//[bb!!!bb]\\n997bb!!!bb1bb!!!bb1"} | ${999}
+  `(
+    "should convert $pretty to $expectedResult",
+    ({ input, expectedResult }) => {
+      expect(Source.StringCalculator(input)).toBe(expectedResult);
+    }
+  );
 
   test.each`
     input                               | expectedResult
-    ${"//[z][q]\n10z11z12q13"}          | ${46}
     ${"//[k][m][s]\n1m2k3s4"}           | ${10}
+    ${"//[z][q]\n10z11z12q13"}          | ${46}
     ${"//[k][m][n][d]\n20d20n20m10k10"} | ${80}
   `("should convert input to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);

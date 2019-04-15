@@ -1,6 +1,8 @@
 const standardDelimiter = ",";
 
 exports.StringCalculator = numbers => {
+
+  
   return numbers
     .standardiseDelimiters()
     .parseValues()

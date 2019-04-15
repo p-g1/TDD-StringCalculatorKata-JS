@@ -52,20 +52,20 @@ describe("StringCalculator", () => {
   });
 
   test.each`
-    input                  | expectedResult
-    ${"1\n2\n3"}           | ${6}
-    ${"12,2\n9\n1"}        | ${24}
-    ${"99\n200\n100\n600"} | ${999}
-  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
+    input                  | pretty                    | expectedResult
+    ${"1\n2\n3"}           | ${"1\\n2\\n3"}            | ${6}
+    ${"12,2\n9\n1"}        | ${"12,2\\n9\\n1"}         | ${24}
+    ${"99\n200\n100\n600"} | ${"99\\n200\\n100\\n600"} | ${999}
+  `("should convert $pretty to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 
   test.each`
-    input                | expectedResult
-    ${"//[,]\n1,2,3"}    | ${6}
-    ${"//[;]\n1;2;3"}    | ${6}
-    ${"//[\n]\n1\n2\n3"} | ${6}
-  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
+    input                | pretty               | expectedResult
+    ${"//[,]\n1,2,3"}    | ${"//[,]\\n1,2,3"}   | ${6}
+    ${"//[;]\n1;2;3"}    | ${"//[;]\\n1;2;3"}   | ${6}
+    ${"//[\n]\n1\n2\n3"} | ${"//[\n]\n1\n2\n3"} | ${6}
+  `("should convert $pretty to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 
@@ -109,30 +109,30 @@ describe("StringCalculator", () => {
   );
 
   test.each`
-    input                               | expectedResult
-    ${"//[k][m][s]\n1m2k3s4"}           | ${10}
-    ${"//[z][q]\n10z11z12q13"}          | ${46}
-    ${"//[k][m][n][d]\n20d20n20m10k10"} | ${80}
-  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
+    input                               | pretty                               | expectedResult
+    ${"//[k][m][s]\n1m2k3s4"}           | ${"//[k][m][s]\\n1m2k3s4"}           | ${10}
+    ${"//[z][q]\n10z11z12q13"}          | ${"//[z][q]\\n10z11z12q13"}          | ${46}
+    ${"//[k][m][n][d]\n20d20n20m10k10"} | ${"//[k][m][n][d]\\n20d20n20m10k10"} | ${80}
+  `("should convert $pretty to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 
   test.each`
-    input                                           | expectedResult
-    ${"//[zzz][q]\n10zzz11zzz12q13"}                | ${46}
-    ${"//[kkkk][m][sysy]\n1m2kkkk3sysy4"}           | ${10}
-    ${"//[k][mm][nnn][dddd]\n20dddd20nnn20mm10k10"} | ${80}
-  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
+    input                                           | pretty                                           | expectedResult
+    ${"//[zzz][q]\n10zzz11zzz12q13"}                | ${"//[zzz][q]\\n10zzz11zzz12q13"}                | ${46}
+    ${"//[kkkk][m][sysy]\n1m2kkkk3sysy4"}           | ${"//[kkkk][m][sysy]\\n1m2kkkk3sysy4"}           | ${10}
+    ${"//[k][mm][nnn][dddd]\n20dddd20nnn20mm10k10"} | ${"//[k][mm][nnn][dddd]\\n20dddd20nnn20mm10k10"} | ${80}
+  `("should convert $pretty to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 
   test.each`
-    input                               | expectedResult
-    ${"//[*][q]\n10*11*12q13"}          | ${46}
-    ${"//[***][q]\n10***11***12q13"}    | ${46}
-    ${"//[-][+][?+]\n10?+11-12+13"}     | ${46}
-    ${"//[{}][---][?]\n10{}11---12?13"} | ${46}
-  `("should convert input to $expectedResult", ({ input, expectedResult }) => {
+    input                               | pretty                               | expectedResult
+    ${"//[*][q]\n10*11*12q13"}          | ${"//[*][q]\\n10*11*12q13"}          | ${46}
+    ${"//[***][q]\n10***11***12q13"}    | ${"//[***][q]\\n10***11***12q13"}    | ${46}
+    ${"//[-][+][?+]\n10?+11-12+13"}     | ${"//[-][+][?+]\\n10?+11-12+13"}     | ${46}
+    ${"//[{}][---][?]\n10{}11---12?13"} | ${"//[{}][---][?]\\n10{}11---12?13"} | ${46}
+  `("should convert $pretty to $expectedResult", ({ input, expectedResult }) => {
     expect(Source.StringCalculator(input)).toBe(expectedResult);
   });
 });
